@@ -3,15 +3,16 @@ import app from "./app";
 import Broth from "./entities/broth.entity";
 import Protein from "./entities/protein.entity";
 import Order from "./entities/order.entity";
+import "dotenv/config"
 
 export const AppDataSource = new DataSource({
   migrationsTableName: 'migrations',
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'marme455',
-  database: 'ramengo',
+  host: process.env.HOST!,
+  port: Number(process.env.PORT!),
+  username: process.env.DATABASE_USERNAME!,
+  password: process.env.DATABASE_PASSWORD!,
+  database: process.env.DATABASE_NAME!,
   logging: false,
   synchronize: false,
   name: 'default',

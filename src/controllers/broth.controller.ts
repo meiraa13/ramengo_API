@@ -4,13 +4,13 @@ import { createBrothService } from "../services/Broth/createBroth.service";
 import { readBrothsService } from "../services/Broth/readBroths.service";
 
 
-async function createBrothController (req:Request, res:Response):Promise<Response>{
-    const body: TBrothRequest = req.body
-    const newBroth = await createBrothService(body)
+// async function createBrothController (req:Request, res:Response):Promise<Response>{
+//     const body: TBrothRequest = req.body
+//     const newBroth = await createBrothService(body)
 
-    return res.status(201).json(newBroth)
+//     return res.status(201).json(newBroth)
 
-}
+// }
 
 async function readBrothsController(req:Request, res:Response):Promise<Response>{
 
@@ -22,4 +22,4 @@ async function readBrothsController(req:Request, res:Response):Promise<Response>
 }
 
 
-export { createBrothController, readBrothsController }
+export { readBrothsController }
