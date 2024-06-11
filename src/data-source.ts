@@ -1,5 +1,4 @@
 import { DataSource, Repository } from "typeorm";
-import app from "./app";
 import Broth from "./entities/broth.entity";
 import Protein from "./entities/protein.entity";
 import Order from "./entities/order.entity";
@@ -21,16 +20,6 @@ export const AppDataSource = new DataSource({
   subscribers: ['src/subscriber/**/*{.ts,.js}'],
 });
 
-AppDataSource.initialize()
-    .then(() => {
-        console.log('Database connected!')
-        app.listen(3000, () => {
-            console.log('Server running on port 3000')
-        })
-    })
-    .catch((err) => {
-        console.error('Error during Data Source initialization', err)
-    })
 
 const brothRepository: Repository<Broth> = AppDataSource.getRepository(Broth)
 const proteinRepository:Repository<Protein> = AppDataSource.getRepository(Protein)

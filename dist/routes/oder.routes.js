@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const schemaParse_middleware_1 = require("../middlewares/schemaParse.middleware");
+const order_controller_1 = require("../controllers/order.controller");
+const order_schemas_1 = require("../schemas/order.schemas");
+const verifyApiKey_middleware_1 = require("../middlewares/verifyApiKey.middleware");
+const orderRoutes = (0, express_1.Router)();
+orderRoutes.post('', verifyApiKey_middleware_1.verifyApiKeyMW, (0, schemaParse_middleware_1.schemaParsedMW)(order_schemas_1.orderRequestSchema), order_controller_1.createOrderController);
+exports.default = orderRoutes;
