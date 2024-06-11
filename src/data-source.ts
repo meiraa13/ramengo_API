@@ -7,11 +7,7 @@ import "dotenv/config"
 export const AppDataSource = new DataSource({
   migrationsTableName: 'migrations',
   type: 'postgres',
-  host: process.env.HOST!,
-  port: Number(process.env.PORT!),
-  username: process.env.DATABASE_USERNAME!,
-  password: process.env.DATABASE_PASSWORD!,
-  database: process.env.DATABASE_NAME!,
+  url:process.env.DATABASE_URL!,
   logging: false,
   synchronize: false,
   name: 'default',
