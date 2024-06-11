@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --rs --cls --ignore-watch node_modules src/data-source.ts",
+    "dev": "ts-node-dev --rs --cls --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
     "makeMigrations": "typeorm-ts-node-commonjs migration:generate -- -d ./src/data-source.ts ./src/migrations/",
     "migrate": "npm run typeorm migration:run -- -d ./src/data-source",

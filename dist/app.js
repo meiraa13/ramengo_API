@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
+require("express-async-errors");
+const cors_1 = __importDefault(require("cors"));
+const express_1 = __importDefault(require("express"));
+const error_1 = require("./error");
+const broth_routes_1 = __importDefault(require("./routes/broth.routes"));
+const protein_routes_1 = __importDefault(require("./routes/protein.routes"));
+const oder_routes_1 = __importDefault(require("./routes/oder.routes"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.use('/broths', broth_routes_1.default);
+app.use('/proteins', protein_routes_1.default);
+app.use('/order', oder_routes_1.default);
+app.use(error_1.handleErrors);
+exports.default = app;
