@@ -1,10 +1,22 @@
-import { brothRepository } from "../../data-source";
 
 
 export async function readBrothsService(){
+    try {
+        const request = await fetch('https://api.tech.redventures.com.br/broths',{
+            method:'GET',
+            headers:{
+                "x-api-key": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf"
 
-    const broths = await brothRepository.find()
+            }
+        })
+        const response = await request.json()
 
-    return broths
+        return response
+        
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
 
 }

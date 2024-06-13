@@ -1,37 +1,46 @@
-import { brothRepository, orderRepository, proteinRepository } from "../../data-source";
-import Broth from "../../entities/broth.entity";
-import Order from "../../entities/order.entity";
-import Protein from "../../entities/protein.entity";
-import { TOrderRequest } from "../../interfaces/order.interfaces";
-import { orderSchema } from "../../schemas/order.schemas";
+import { requestDTO } from "../../dtos/requestDTO"
+import { AppError } from "../../error"
 
 
+export async function createOrderService(body: requestDTO){
 
+    if(!body.brothId || !body.proteinId){
+        throw new AppError("both brothId and proteinId are required", 400)
+    }
 
-export async function createOrderService(body: TOrderRequest){
-    
-     
-    const broth:Broth | null = await brothRepository.findOne({
-        where:{
-            id:body.brothId
+    try {
+        const requestId = await fetch('https://api.tech.redventures.com.br/orders/generate-id',{
+            method:'POST',
+            headers:{
+                "x-api-key": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf"
+
+            }
+        })
+        const responseId = await requestId.json()
+
+        const request = await fetch('https://api.tech.redventures.com.br/orders',{
+            method:'POST',
+            headers:{
+                "x-api-key": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf"
+            },
+            body:JSON.stringify(body)
+
+        })
+        const response = await request.json()
+
+        const responseObj = {
+            id: responseId.orderId,
+            description: response.description,
+            image: response.image
         }
-    })
 
-    const protein:Protein | null = await proteinRepository.findOne({
-        where:{
-            id:body.proteinId
-        }
-    })
+        return responseObj
+        
+        
+    } catch (error) {
+        console.log(error)
+    }
     
-    const order:Order = orderRepository.create({
-        description:`${broth?.name} and ${protein?.name} Ramen`,
-        image:"https://tech.redventures.com.br/icons/ramen/ramenChasu.png"
-    })
-    await orderRepository.save(order)
-
-    const response = orderSchema.parse(order)
-
-    return response
 
 }
 

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { ZodError } from "zod"
+
 
 class AppError extends Error {
     statusCode: number
@@ -14,12 +14,6 @@ const handleErrors = (err:Error, req:Request, res:Response, next:NextFunction) =
     if(err instanceof AppError){
         return res.status(err.statusCode).json({
             error: err.message
-        })
-    }
-
-    if(err instanceof ZodError){
-        return res.status(400).json({
-            error: "both brothId and proteinId are required"
         })
     }
 
