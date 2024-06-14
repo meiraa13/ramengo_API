@@ -36,10 +36,11 @@ npm run dev
 ## Endpoints
 <br/>
 
-| Método |          Endpoint                    | Responsabilidade                                 
-| GET    |          /broths                     | busca todos caldos disponíveis        
-| GET    |          /proteins                   | busca todas proteínas disponíveis
-| POST   |          /orders                     | faz um pedido                    
+| Método | Endpoint                   | Responsabilidade                                  | Autorização                           |
+| ------ | -------------------------- | ------------------------------------------------- | -------------------------------------- |
+| GET    | /broths                    | buscar todos os caldos                            | api key 
+| GET    | /proteins                  | buscar todas as proteínas                         | api key
+|POST    | /orders                    | realizar um pedido                                | api key
 
 
 ## Requisições
