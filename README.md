@@ -13,7 +13,7 @@ Esta é uma API que tem como finalidade consumir outra api externa e realizar re
 
 Siga os passos abaixo para poder rodar a aplicação no seu servidor local:
 
-1. Instale o Node.js (v => 18)
+1. Instale o Node.js (v >= 18)
 
 2. Rode o comando abaixo para instalar todas as dependencias:
 
@@ -36,10 +36,10 @@ npm run dev
 ## Endpoints
 <br/>
 
-| Método | Endpoint                | Responsabilidade                                 
-| GET    | /broths                 | busca todos caldos disponíveis        
-| GET    | /proteins               | busca todas proteínas disponíveis
-| POST   | /orders                 | faz um pedido                    
+| Método |          Endpoint                    | Responsabilidade                                 
+| GET    |          /broths                     | busca todos caldos disponíveis        
+| GET    |          /proteins                   | busca todas proteínas disponíveis
+| POST   |          /orders                     | faz um pedido                    
 
 
 ## Requisições
